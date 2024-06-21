@@ -1,0 +1,179 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  ion-content {
+    --background: #f0f0f5;
+    padding: 16px;
+  }
+  
+  ion-header {
+    --background: #3b5998;
+    --color: white;
+  }
+  
+  ion-toolbar {
+    --background: #3b5998;
+    --color: white;
+  }
+  
+  ion-title {
+    color: white;
+  }
+  
+  /* Contenedores principales */
+  .d-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pre-form,
+  #secondView {
+    width: 100%;
+  }
+  
+  /* Tarjetas */
+  ion-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .card strong {
+    font-size: 1.2em;
+  }
+  
+  .card p {
+    color: #666;
+  }
+  
+  ion-button {
+    --border-radius: 8px;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+  }
+  
+  ion-button[color="success"] {
+    background-color: #28a745;
+  }
+  
+  .mt-2 {
+    margin-top: 12px;
+  }
+  
+  /* Formularios */
+  .container {
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 8px;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .container.border {
+    border: 1px solid #ddd;
+  }
+  
+  ion-label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  ion-input {
+    margin-top: 4px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fafafa;
+  }
+  
+  ion-input[type="file"] {
+    border: none;
+  }
+  
+  h3 {
+    margin-top: 16px;
+    color: #3b5998;
+  }
+  
+  ion-list ion-button {
+    --background: #3b5998;
+    --color: white;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Grids */
+  ion-grid {
+    margin-top: 16px;
+  }
+  
+  ion-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ion-col .container {
+    margin-top: 8px;
+  }
+  
+  @media (min-width: 768px) {
+    ion-card {
+      padding: 24px;
+    }
+  }
+  
