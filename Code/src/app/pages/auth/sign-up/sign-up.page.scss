@@ -2,3 +2,12 @@ ion-card-content{
     margin-top: -50px;
 
 }
+
+
+.card{
+    width: 90%; /* Ajusta este valor según tus necesidades */
+    max-width: 100%; /* Esto limita el ancho máximo de la tarjeta */
+    margin: auto;
+    margin-top: 20px;
+}
+

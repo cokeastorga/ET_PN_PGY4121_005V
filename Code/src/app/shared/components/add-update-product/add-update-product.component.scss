@@ -18,3 +18,17 @@
     height: 40px; /* Altura del botón */
     font-size: 16px;
 }
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+
+.card{
+    width: 100%; /* Ajusta este valor según tus necesidades */
+    max-width: 800px; /* Esto limita el ancho máximo de la tarjeta */
+    margin: auto;
+    margin-top: 20px;
+}

@@ -1,6 +1,6 @@
 <app-header [isModal]="true" [title]="product ? 'Actualizar Producto' : 'Agregar Producto' "></app-header>
 <ion-content>
-<ion-card>
+<ion-card class="card">
   <ion-card-header>
      <!-- si existe una imagen -->
      <ion-avatar *ngIf="form.value.image">
@@ -15,43 +15,43 @@
       Tomar/Selecionar
     </ion-button>
   </ion-card-header>
-  <div class="shapedividers_com-5662"></div>
-  <ion-card-content>
-    <form [formGroup]="form"  (ngSubmit)="submit()" (keypress.enter)="submit()">
-
-
-
-
-      <!-- CAMPO categoria -->
-      <app-custom-input icon="pricetags" type="text" label="Categoria del objeto" [control]="form.controls.category"></app-custom-input>
-      <div class="validators" *ngIf="form.controls.category.errors && form.controls.category.touched">
-        <div *ngIf="form.controls.category.errors?.['required']">Ingresa la categoria del objeto</div>
-      </div>
-      <!-- CAMPO descripcion -->
-      <app-custom-input icon="document-outline"  type="text" label="Descripcion completa" [control]="form.controls.description"></app-custom-input>
-      <div class="validators" *ngIf="form.controls.description.errors && form.controls.description.touched">
-        <div *ngIf="form.controls.description.errors?.['required']">Ingresa una descripcion completa</div>
-        <div *ngIf="form.controls.description.errors?.['Lenght']">La descripcion debe tener mas de 4 caracteres</div>
-      </div>
-      <!-- CAMPO Lugar -->
-      <app-custom-input icon="pin" type="text" label="¿Donde lo encontraste?" [control]="form.controls.site"></app-custom-input>
-      <div class="validators" *ngIf="form.controls.site.errors && form.controls.site.touched">
-        <div *ngIf="form.controls.site.errors?.['required']">Donde lo encontraste ?</div>
-      
-      </div>
   
-      <!-- estado del objeto -->
+    <ion-card-content>
+      <form [formGroup]="form"  (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+
+
+
+        <!-- CAMPO categoria -->
+        <app-custom-input icon="pricetags" type="text" label="Categoria del objeto" [control]="form.controls.category"></app-custom-input>
+        <div class="validators" *ngIf="form.controls.category.errors && form.controls.category.touched">
+          <div *ngIf="form.controls.category.errors?.['required']">Ingresa la categoria del objeto</div>
+        </div>
+        <!-- CAMPO descripcion -->
+        <app-custom-input icon="document-outline"  type="text" label="Descripcion completa" [control]="form.controls.description"></app-custom-input>
+        <div class="validators" *ngIf="form.controls.description.errors && form.controls.description.touched">
+          <div *ngIf="form.controls.description.errors?.['required']">Ingresa una descripcion completa</div>
+          <div *ngIf="form.controls.description.errors?.['Lenght']">La descripcion debe tener mas de 4 caracteres</div>
+        </div>
+        <!-- CAMPO Lugar -->
+        <app-custom-input icon="pin" type="text" label="¿Donde lo encontraste?" [control]="form.controls.site"></app-custom-input>
+        <div class="validators" *ngIf="form.controls.site.errors && form.controls.site.touched">
+          <div *ngIf="form.controls.site.errors?.['required']">Donde lo encontraste ?</div>
+        
+        </div>
     
-  
-      <ion-button mode="ios" class="ion-margin" type="submit" [disabled]="form.invalid">
-       
-        {{product ? 'Actualizar Producto' : 'Agregar Producto'}}
-        <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
-      </ion-button>
-  
-    </form>
-  
-  </ion-card-content>
+        <!-- estado del objeto -->
+      
+    
+        <ion-button mode="ios" class="ion-margin" type="submit" [disabled]="form.invalid">
+        
+          {{product ? 'Actualizar Producto' : 'Agregar Producto'}}
+          <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+    
+      </form>
+    
+    </ion-card-content>
 </ion-card>
  
 

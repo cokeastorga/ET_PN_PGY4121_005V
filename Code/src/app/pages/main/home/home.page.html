@@ -1,12 +1,11 @@
 <app-header [showMenu]="true" title="Inicio"></app-header>
 
-<ion-content>
-<ion-card>
+<ion-content class="ion-card-content" >
+<ion-card class="card"> 
   <ion-header>
     <app-logo></app-logo>
   </ion-header>
-  <div class="shapedividers_com-5662"></div>
-  <ion-card-content>
+  <ion-card-content >
     
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -72,7 +71,7 @@
 
 
   <!-- boton crea producto -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab class="boton" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addUpdateProduct()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
