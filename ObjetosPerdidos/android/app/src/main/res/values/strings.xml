@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">ObjetosPerdidos</string>
-    <string name="title_activity_main">ObjetosPerdidos</string>
-    <string name="package_name">com.constanza.objetosperdidos</string>
-    <string name="custom_url_scheme">com.constanza.objetosperdidos</string>
-</resources>
