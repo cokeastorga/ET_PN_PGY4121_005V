@@ -1,0 +1,94 @@
+<ion-content [fullscreen]="true" style="--overflow: scroll;">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Objetos perdidos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="d-flex" style="height:100%;flex-direction: column;">
+    
+      <div #firstView class="pre-form">
+        <div class="container">
+          <img class="logo" src="../../assets/logo-finder.png" style="width: 17rem;margin-bottom: 1rem;" />
+          <p style="line-height:2rem;margin-bottom: 1.6rem;font-size: 1.8rem;font-weight: bold;color: black;">¿Encontraste un <span style="color:#0cbccc;">Objeto</span>?</p>
+          <p>¡Regístralo para podernos ayudar a encontrar a la persona que perdió su objeto!</p>
+          <ion-button class="mt-3" (click)="abrirFormulario()" color="primary">Ingresar objeto</ion-button>
+        </div>
+      </div>
+  
+      <div #secondView class="d-none form">
+        <div class="container no-border">
+          <h3>Información del objeto</h3>
+          <ion-grid>
+            <ion-row>
+
+              <ion-col size-lg="4" size="12">
+                <ion-list>
+                  <ion-label>Titulo</ion-label>
+                  <ion-input [(ngModel)]="titulo" name="titulo" placeholder="Ingrese producto"></ion-input>
+                </ion-list>
+              </ion-col>
+
+              <ion-col size-lg="4" size="12">
+                <ion-list>
+                  <ion-label>Descripción</ion-label>
+                  <ion-input [(ngModel)]="descripcion" placeholder="Ingrese descripción" name="descripcion"></ion-input>
+                </ion-list>
+              </ion-col>
+
+              <ion-col size-lg="4" size="12">
+                <ion-list>
+                  <ion-label>Fecha</ion-label>
+                  <ion-input type="date" [(ngModel)]="fecha" name="fecha" placeholder="Ingrese fecha"></ion-input>
+                </ion-list>
+              </ion-col>
+
+              <ion-col size-lg="4" size="12">
+                <ion-list>
+                  <ion-label>Ubicación</ion-label>
+                  <ion-input [(ngModel)]="ubicacion" name="ubicacion" placeholder="Ingrese ubicación"></ion-input>
+                </ion-list>
+              </ion-col>
+
+              <ion-col size-lg="6" size="12">
+                <ion-list>
+                  <ion-label>Foto</ion-label><br>
+                  <ion-input accept=".png,.jpg" (change)="onFileChosen($event)" type="file"></ion-input>
+                </ion-list>
+              </ion-col>
+
+              
+
+            </ion-row>
+            
+          </ion-grid>
+          
+          <h3>Información de contacto</h3>
+          <ion-grid>
+            <ion-row>
+              <ion-col size-lg="4" size="12">
+                <ion-list>
+                  <ion-label>Nombre</ion-label>
+                  <ion-input [(ngModel)]="nombre" name="nombre" placeholder="Ingrese nombre"></ion-input>
+                </ion-list>
+              </ion-col>
+              
+              <ion-col size-lg="4" size="12">
+                <ion-list>
+                  <ion-label>Telefono</ion-label>
+                  <ion-input [(ngModel)]="telefono" name="telefono" placeholder="Ingrese telefono"></ion-input>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <ion-list>
+            <ion-button color="primary" (click)="enviarFormulario()">Crear publicación</ion-button>
+          </ion-list>
+
+          
+        </div>
+      </div>
+
+  </div>
+</ion-content>

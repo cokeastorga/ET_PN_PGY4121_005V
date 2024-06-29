@@ -1,0 +1,126 @@
+.container {
+  text-align: center;
+  padding: 1.3rem 2.9rem;
+    
+    position: relative;
+    margin: auto;
+    border-radius: 0.7rem;
+    box-shadow: 0.1rem 0.1rem 1.1rem 0.5rem #6b708173;
+}
+
+.container ion-list {
+  text-align: left;
+}
+
+.container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+.container a {
+  text-decoration: none;
+}
+
+.d-flex {
+  display:flex;
+}
+
+ion-list {
+  background-color:transparent;
+}
+
+.pre-form {
+  margin:auto;
+  margin-top: 18vh;
+  position:relative;
+  margin-bottom: 15rem;
+  background: white;
+  border-radius: 0.7rem;
+}
+
+.pre-form.top {
+  animation: haciaArribaPre forwards;
+  animation-duration: 2s;
+}
+
+.form {
+  background: white;
+  margin: auto 0rem;
+  border-radius: 0.7rem;
+}
+
+.logo {
+  margin-top: 0rem;
+}
+
+@media (min-width:768px) {
+  .logo {
+    margin-top: -3rem;
+  }
+  .form {
+    margin: auto 10rem;
+  }
+  .container {
+    padding:5.2rem 8.9rem;
+  }
+  .pre-form.top {
+    animation: haciaArribaPre2 forwards;
+    animation-duration: 2s;
+  }
+}
+
+@keyframes haciaArribaPre {
+  0% {
+      margin-top:18vh;
+      margin-bottom:15rem;
+  }
+  100% {
+      margin-top:-65vh;
+      margin-bottom:3rem;
+  }
+}
+
+@keyframes haciaArribaPre2 {
+  0% {
+      margin-top:18vh;
+      margin-bottom:15rem;
+  }
+  100% {
+      margin-top:-90vh;
+      margin-bottom:3rem;
+  }
+}
+
+.no-border {
+  border:none!important;
+}
+
+ion-button {
+  --ion-color-base:#2898ee!important;
+  font-size: 0.65rem;
+  --padding-start: 2rem;
+  --padding-end: 2rem;
+}
+
+.form h3 {
+  color: #0cbccc;
+}
+
+ion-label {
+  font-weight: bold;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}

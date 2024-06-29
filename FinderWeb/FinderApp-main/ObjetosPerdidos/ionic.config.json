@@ -1,0 +1,7 @@
+{
+  "name": "ObjetosPerdidos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
