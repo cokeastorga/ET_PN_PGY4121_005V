@@ -1,27 +1,36 @@
 import { Injectable } from '@angular/core';
-import { UtilsService } from './utils.service';
-import { User } from '../models/user.model'; 
-import { getAuth, signInWithEmailAndPassword, updateProfile, createUserWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { AngularFirestore, } from '@angular/fire/compat/firestore'
-import { addDoc, doc, getDoc, query, collection, getFirestore, setDoc, collectionData, updateDoc, deleteDoc } from '@angular/fire/firestore'
 import { AngularFireStorage} from '@angular/fire/compat/storage'
+import { getAuth, signInWithEmailAndPassword, updateProfile, createUserWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { addDoc, doc, getDoc, query, collection, getFirestore, setDoc, collectionData, updateDoc, deleteDoc, getDocs } from '@angular/fire/firestore'
 import { getStorage, uploadString, ref, getDownloadURL, deleteObject } from 'firebase/storage'
+import { UtilsService } from './utils.service';
+import { User } from '../models/user.model'; 
+import { initializeApp } from 'firebase/app';
+import { environment } from 'src/environments/environment';
+import { ToastController } from '@ionic/angular';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
+  private secondaryFirestore: any;
 
   constructor(
     private auth: AngularFireAuth,
     private firestore: AngularFirestore,
     private utilsSvc: UtilsService,
-    private storage: AngularFireStorage
-  ) { }
+    private storage: AngularFireStorage,
+    private toastController: ToastController // Añadimos ToastController
+  ) {  
+    const secondaryApp = initializeApp(environment.firebaseConfigOtraBD, 'secondary');
+    this.secondaryFirestore = getFirestore(secondaryApp);
+  }
 
   // Autenticación
-    //autenticacion
     getAuth() {
       return getAuth();
     }
@@ -96,5 +105,36 @@ export class FirebaseService {
   // eliminar archivo
   deleteFile(path: string) {
     return deleteObject(ref(getStorage(), path));
+  }
+
+    // Función para obtener y comparar categorías de formularios y mostrar notificaciones en pantalla
+  async notifyMatchingCategories(userId: string) {
+    // Obtener categorías de formularios del usuario en la base de datos principal
+    const userFormsRef = collection(getFirestore(), `users/${userId}/products`);
+    const userFormsSnap = await getDocs(userFormsRef);
+    const userCategories = userFormsSnap.docs.map(doc => doc.data()['category']);
+
+    // Obtener categorías de formularios de la base de datos secundaria
+    const secondaryFormsRef = collection(this.secondaryFirestore, 'objetos');
+    const secondaryFormsSnap = await getDocs(secondaryFormsRef);
+    const secondaryTitles  = secondaryFormsSnap.docs.map(doc => doc.data()['titulo']);
+
+
+    // Comparar las categorías y mostrar notificaciones en caso de coincidencia
+    for (const category of userCategories) {
+      if (secondaryTitles .includes(category)) {
+        this.showToast(`Se ha encontrado un objeto perdido en la categoría: ${category}`);
+      }
+    }
+  }
+
+  // Función para mostrar un toast
+  async showToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 }

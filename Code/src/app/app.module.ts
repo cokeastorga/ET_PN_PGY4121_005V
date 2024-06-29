@@ -37,3 +37,7 @@ export class AppModule {
 
 const app = initializeApp(environment.firebase);
 const storage = getStorage(app);
+
+// Inicializar segunda aplicación de Firebase
+const secondaryApp = initializeApp(environment.firebaseConfigOtraBD, 'secondary');
+const secondaryStorage = getStorage(secondaryApp);
