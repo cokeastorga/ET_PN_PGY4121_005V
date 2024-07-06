@@ -6,6 +6,7 @@ import { LogoComponent } from './components/logo/logo.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddUpdateProductComponent } from './components/add-update-product/add-update-product.component';
+import { DataListComponent } from './components/data-list/data-list.component';
 
 
 
@@ -13,12 +14,14 @@ import { AddUpdateProductComponent } from './components/add-update-product/add-u
   declarations: [HeaderComponent,
   CustomInputComponent,
 LogoComponent,
-AddUpdateProductComponent],
+AddUpdateProductComponent,
+DataListComponent],
   exports: [HeaderComponent,
   CustomInputComponent,
 LogoComponent, 
 ReactiveFormsModule,
-AddUpdateProductComponent],
+AddUpdateProductComponent,
+DataListComponent],
   imports: [
     CommonModule,
     IonicModule,
