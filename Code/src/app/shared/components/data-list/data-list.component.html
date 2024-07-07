@@ -1,0 +1,17 @@
+<ion-list>
+  <ion-list-header>
+    <ion-label>User Collections</ion-label>
+  </ion-list-header>
+  <ion-item *ngFor="let item of userCollections">
+    {{ item.category }}
+    {{ item.site }}
+  </ion-item>
+
+  <ion-list-header>
+    <ion-label>Secondary Collections</ion-label>
+  </ion-list-header>
+  <ion-item *ngFor="let item of secondaryCollections">
+    {{ item.titulo }} / 
+    {{ item.ubicacion }}
+  </ion-item>
+</ion-list>

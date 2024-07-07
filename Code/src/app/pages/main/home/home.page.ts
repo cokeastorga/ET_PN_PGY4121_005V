@@ -77,6 +77,7 @@ async addUpdateProduct(product?:Product){
   if(success) this.getProducts();
 
 }
+
 async confirmDeleteProduct(product: Product) {
   this.utilsSvc.presentAlert({
     header: 'Eliminar Objeto',

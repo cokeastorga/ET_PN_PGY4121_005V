@@ -108,9 +108,9 @@ export class FirebaseService {
   }
 
     // Función para obtener y comparar categorías de formularios y mostrar notificaciones en pantalla
-  async notifyMatchingCategories(userId: string) {
+  async notifyMatchingCategories(path: string) {
     // Obtener categorías de formularios del usuario en la base de datos principal
-    const userFormsRef = collection(getFirestore(), `users/${userId}/products`);
+    const userFormsRef = collection(getFirestore(), `users/${path}/products`);
     const userFormsSnap = await getDocs(userFormsRef);
     const userCategories = userFormsSnap.docs.map(doc => doc.data()['category']);
 
