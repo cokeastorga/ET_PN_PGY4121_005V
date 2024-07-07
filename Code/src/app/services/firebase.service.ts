@@ -107,28 +107,29 @@ export class FirebaseService {
     return deleteObject(ref(getStorage(), path));
   }
 
-    // Función para obtener y comparar categorías de formularios y mostrar notificaciones en pantalla
-  async notifyMatchingCategories(path: string) {
-    // Obtener categorías de formularios del usuario en la base de datos principal
-    const userFormsRef = collection(getFirestore(), `users/${path}/products`);
+  
+  // Obtener colecciones de la base de datos secundaria
+  getSecondaryCollectionData(path: string, collectionQuery?: any) {
+    const ref = collection(this.secondaryFirestore, path);
+    return collectionData(query(ref, collectionQuery), { idField: 'id' });
+  }
+
+  async notifyMatchingCategories(userId: string) {
+    const userFormsRef = collection(getFirestore(), `users/${userId}/products`);
     const userFormsSnap = await getDocs(userFormsRef);
     const userCategories = userFormsSnap.docs.map(doc => doc.data()['category']);
 
-    // Obtener categorías de formularios de la base de datos secundaria
     const secondaryFormsRef = collection(this.secondaryFirestore, 'objetos');
     const secondaryFormsSnap = await getDocs(secondaryFormsRef);
     const secondaryTitles  = secondaryFormsSnap.docs.map(doc => doc.data()['titulo']);
 
-
-    // Comparar las categorías y mostrar notificaciones en caso de coincidencia
     for (const category of userCategories) {
-      if (secondaryTitles .includes(category)) {
+      if (secondaryTitles.includes(category)) {
         this.showToast(`Se ha encontrado un objeto perdido en la categoría: ${category}`);
       }
     }
   }
 
-  // Función para mostrar un toast
   async showToast(message: string) {
     const toast = await this.toastController.create({
       message: message,

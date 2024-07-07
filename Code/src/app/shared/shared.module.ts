@@ -10,18 +10,22 @@ import { DataListComponent } from './components/data-list/data-list.component';
 
 
 
+
+
 @NgModule({
   declarations: [HeaderComponent,
   CustomInputComponent,
 LogoComponent,
 AddUpdateProductComponent,
-DataListComponent],
+DataListComponent
+],
   exports: [HeaderComponent,
   CustomInputComponent,
 LogoComponent, 
 ReactiveFormsModule,
 AddUpdateProductComponent,
-DataListComponent],
+DataListComponent
+],
   imports: [
     CommonModule,
     IonicModule,

@@ -3,23 +3,39 @@ import { User } from 'src/app/models/user.model';
 import { Product } from 'src/app/models/product.models';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
+
 @Component({
   selector: 'app-data-list',
   templateUrl: './data-list.component.html',
-  styleUrls: ['./data-list.component.scss'],
+  styleUrls: ['./data-list.component.scss']
 })
 export class DataListComponent implements OnInit {
-  items: any[];
-  user = {} as User;
 
-  constructor(private firebaseService: FirebaseService, user: User, product: Product) {
-  
+  userCollections: any[] = [];
+  secondaryCollections: any[] = [];
+  items: any[] = [];
 
-  }
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
-    this.firebaseService.getCollectionData(`users/${this.user.uid}/products`).subscribe(data => {
-      this.items = data;
+    this.loadUserCollections();
+    this.loadSecondaryCollections();
+  }
+
+  async loadUserCollections() {
+    const user = await this.firebaseService.getAuth().currentUser;
+    if (user) {
+      const path = `users/${user.uid}/products`;
+      this.firebaseService.getCollectionData(path).subscribe(data => {
+        this.userCollections = data;
+      });
+    }
+  }
+
+  async loadSecondaryCollections() {
+    const path = 'objetos';
+    this.firebaseService.getSecondaryCollectionData(path).subscribe(data => {
+      this.secondaryCollections = data;
     });
   }
 }

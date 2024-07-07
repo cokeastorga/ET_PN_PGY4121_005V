@@ -14,7 +14,7 @@ import { AddUpdateProductComponent } from 'src/app/shared/components/add-update-
 })
 export class HomePage {
 
-
+  items: any[] = [];
   user = {} as User;
   loading: boolean = false;
   products: Product[]=[];
