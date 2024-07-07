@@ -1,0 +1,27 @@
+.match-notification {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #1c1c1d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background-color: #e0f7fa;
+  }
+  
+  .match-notification ion-card-header {
+    background-color: rgb(30, 203, 30);
+    color: rgb(217, 62, 62);
+  }
+  
+  .match-notification ion-card-content {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .card{
+  
+     /* Esto limita el ancho máximo de la tarjeta */
+    max-height: min-content ;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }

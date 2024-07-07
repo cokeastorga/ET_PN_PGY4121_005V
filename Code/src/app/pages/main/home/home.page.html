@@ -4,14 +4,16 @@
 <ion-card class="card"> 
   <ion-header>
     <app-logo></app-logo>
+    
   </ion-header>
+
   <ion-card-content >
     
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
-  <!-- PRODUCTOS  -->  <app-data-list></app-data-list>
+  <app-data-list></app-data-list>
+  <!-- PRODUCTOS  -->  
 
   <ion-list *ngIf="!loading">
     <ion-item-sliding class="product-item" *ngFor="let p of products">

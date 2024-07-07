@@ -43,7 +43,7 @@
 ion-content {
     background: rgb(40,152,238);
     --background: linear-gradient(90deg, rgba(40,152,238,1) 51%, rgba(12,188,204,1) 100%);
-   
+    background-color: whitesmoke;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,7 +54,7 @@ ion-card {
     margin: 0; /* Remove default margins */
     max-width: 375.2px;
     width: 100%; /* Ensure card width is responsive */
-    
+    background-color: whitesmoke;
     justify-content: center;
     align-items: center;
 }
@@ -63,4 +63,5 @@ ion-card {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  
 }
