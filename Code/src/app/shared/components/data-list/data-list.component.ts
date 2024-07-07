@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import * as use from '@tensorflow-models/universal-sentence-encoder';
+import * as tf from '@tensorflow/tfjs';
+import Long from 'long';
+
+
 
 @Component({
   selector: 'app-data-list',
@@ -13,10 +18,12 @@ export class DataListComponent implements OnInit {
   secondaryCollections: any[] = [];
   hasMatch: boolean = false;
   matchMessage: string = '';
+  model: use.UniversalSentenceEncoder;
 
   constructor(private firebaseService: FirebaseService, private alertController: AlertController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.model = await use.load();
     this.loadUserCollections();
     this.loadSecondaryCollections();
   }
@@ -49,10 +56,31 @@ export class DataListComponent implements OnInit {
     });
   }
 
-  checkForMatches() {
+  async getEmbedding(text: string): Promise<tf.Tensor> {
+    const embeddings = await this.model.embed([text]);
+    return embeddings.array().then((array: any) => tf.tensor(array[0]));
+  }
+
+  cosineSimilarity(a: tf.Tensor, b: tf.Tensor): number {
+    const dotProduct = tf.dot(a, b).dataSync()[0];
+    const normA = tf.norm(a).dataSync()[0];
+    const normB = tf.norm(b).dataSync()[0];
+    return dotProduct / (normA * normB);
+  }
+
+  async checkForMatches() {
     for (let userItem of this.userCollections) {
+      const userCategoryEmbedding = await this.getEmbedding(userItem.category);
+      const userSiteEmbedding = await this.getEmbedding(userItem.site);
+
       for (let secondaryItem of this.secondaryCollections) {
-        if (userItem.category === secondaryItem.titulo && userItem.site === secondaryItem.ubicacion) {
+        const secondaryCategoryEmbedding = await this.getEmbedding(secondaryItem.titulo);
+        const secondarySiteEmbedding = await this.getEmbedding(secondaryItem.ubicacion);
+
+        const categorySimilarity = this.cosineSimilarity(userCategoryEmbedding, secondaryCategoryEmbedding);
+        const siteSimilarity = this.cosineSimilarity(userSiteEmbedding, secondarySiteEmbedding);
+
+        if (categorySimilarity > 0.8 && siteSimilarity > 0.8) { // Ajusta el umbral de similitud según tus necesidades
           this.hasMatch = true;
           this.matchMessage = `DIRIGITE AL REPOSITORIO FINDER MAS CERCANO AL LUGAR DE PERDIDA "Objeto encontrado: ${userItem.category}" / "Ubicación: ${userItem.site}"`;
           this.presentNotificationAlert(); // Mostrar la alerta si hay coincidencia
