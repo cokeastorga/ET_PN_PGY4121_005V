@@ -55,7 +55,7 @@ export class DataListComponent implements OnInit {
       this.checkForMatches(); // Verificar coincidencias después de cargar los datos
     });
   }
-
+ 
   async getEmbedding(text: string): Promise<tf.Tensor> {
     const embeddings = await this.model.embed([text]);
     return embeddings.array().then((array: any) => tf.tensor(array[0]));
@@ -72,17 +72,20 @@ export class DataListComponent implements OnInit {
     for (let userItem of this.userCollections) {
       const userCategoryEmbedding = await this.getEmbedding(userItem.category);
       const userSiteEmbedding = await this.getEmbedding(userItem.site);
+      const userDescriptionEmbedding = await this.getEmbedding(userItem.description); // Embedding para la descripción del usuario
 
       for (let secondaryItem of this.secondaryCollections) {
         const secondaryCategoryEmbedding = await this.getEmbedding(secondaryItem.titulo);
         const secondarySiteEmbedding = await this.getEmbedding(secondaryItem.ubicacion);
+        const secondaryDescriptionEmbedding = await this.getEmbedding(secondaryItem.descripcion); // Embedding para la descripción secundaria
 
         const categorySimilarity = this.cosineSimilarity(userCategoryEmbedding, secondaryCategoryEmbedding);
         const siteSimilarity = this.cosineSimilarity(userSiteEmbedding, secondarySiteEmbedding);
+        const descriptionSimilarity = this.cosineSimilarity(userDescriptionEmbedding, secondaryDescriptionEmbedding); // Calcular similitud para la descripción
 
-        if (categorySimilarity > 0.8 && siteSimilarity > 0.8) { // Ajusta el umbral de similitud según tus necesidades
+        if (categorySimilarity > 0.8 && siteSimilarity > 0.8 && descriptionSimilarity > 0.8) { // Ajusta el umbral de similitud según tus necesidades
           this.hasMatch = true;
-          this.matchMessage = `DIRIGITE AL REPOSITORIO FINDER MAS CERCANO AL LUGAR DE PERDIDA "Objeto encontrado: ${userItem.category}" / "Ubicación: ${userItem.site}"`;
+          this.matchMessage = `Acercate al Repositorio Finder mas cercano "Objeto encontrado: ${userItem.category}" / "Ubicación: ${userItem.site} /  "Descripción: ${userItem.description}"`;
           this.presentNotificationAlert(); // Mostrar la alerta si hay coincidencia
           return;
         }
