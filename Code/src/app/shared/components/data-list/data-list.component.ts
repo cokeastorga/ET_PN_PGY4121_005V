@@ -83,7 +83,7 @@ export class DataListComponent implements OnInit {
         const siteSimilarity = this.cosineSimilarity(userSiteEmbedding, secondarySiteEmbedding);
         const descriptionSimilarity = this.cosineSimilarity(userDescriptionEmbedding, secondaryDescriptionEmbedding); // Calcular similitud para la descripción
 
-        if (categorySimilarity > 0.8 && siteSimilarity > 0.8 && descriptionSimilarity > 0.8) { // Ajusta el umbral de similitud según tus necesidades
+        if (categorySimilarity > 0.5 && siteSimilarity > 0.5 && descriptionSimilarity > 0.5) { // Ajusta el umbral de similitud según tus necesidades
           this.hasMatch = true;
           this.matchMessage = `Acercate al Repositorio Finder mas cercano "Objeto encontrado: ${userItem.category}" / "Ubicación: ${userItem.site} /  "Descripción: ${userItem.description}"`;
           this.presentNotificationAlert(); // Mostrar la alerta si hay coincidencia
